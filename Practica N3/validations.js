@@ -39,3 +39,65 @@ function validarLongitud(value, min, max) {
         parameters: { value, min, max }
     };
 }
+
+// Valida que la contraseña sea compleja (ejemplo: registro de usuario en GamesGauges)
+function validarPasswordCompleja(password) {
+    const startsWithUpper = /^[A-Z]/.test(password);
+    const hasUpper = /[A-Z]/.test(password);
+    const hasNumber = /[0-9]/.test(password);
+    const hasSymbol = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+
+    let isValid = startsWithUpper && hasUpper && hasNumber && hasSymbol;
+    let errorMessage = null;
+    let errorCode = null;
+
+    if (!startsWithUpper) {
+        errorMessage = "La contrasena debe iniciar con una letra mayuscula.";
+        errorCode = "STARTS_NOT_UPPER";
+    } else if (!hasUpper) {
+        errorMessage = "La contrasena debe contener al menos una letra mayuscula.";
+        errorCode = "NO_UPPERCASE";
+    } else if (!hasNumber) {
+        errorMessage = "La contrasena debe contener al menos un numero.";
+        errorCode = "NO_NUMBER";
+    } else if (!hasSymbol) {
+        errorMessage = "La contrasena debe contener al menos un simbolo especial.";
+        errorCode = "NO_SYMBOL";
+    }
+
+    return {
+        isValid,
+        errorMessage: isValid ? null : errorMessage,
+        errorCode: isValid ? null : errorCode,
+        parameters: {
+            value: password,
+            startsWithUpper,
+            hasUpper,
+            hasNumber,
+            hasSymbol
+        }
+    };
+}
+
+// Valida que dos contrasenas coincidan (ejemplo: registro en GamesGauges)
+function validarConfirmacionClave(clave1, clave2) {
+    const isValid = clave1 === clave2;
+    return {
+        isValid,
+        errorMessage: isValid ? null : "Las contrasenas no coinciden.",
+        errorCode: isValid ? null : "PASSWORD_MISMATCH",
+        parameters: { clave1, clave2 }
+    };
+}
+
+// Valida que el numero de telefono sea solo numeros
+function validarSoloNumeros(valor) {
+    const regex = /^[0-9]+$/;
+    const isValid = regex.test(valor);
+    return {
+        isValid,
+        errorMessage: isValid ? null : "Solo se permiten numeros.",
+        errorCode: isValid ? null : "ONLY_NUMBERS",
+        parameters: { value: valor }
+    };
+}
