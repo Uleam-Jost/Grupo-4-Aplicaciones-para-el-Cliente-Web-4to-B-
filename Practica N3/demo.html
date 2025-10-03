@@ -1,1 +1,25 @@
+// ejemplode Validaciones
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Demo Validaciones - GamesGauges</title>
+  <script src="validations.js"></script>
+</head>
+<body>
+  <h1>Demo Validaciones</h1>
+  <p>Abre la consola para ver los resultados.</p>
 
+  <script>
+    // Ejemplos de pruebas
+    console.log("Prueba validarRequerido:");
+    console.log(validarRequerido(""));        // Falla
+    console.log(validarRequerido("Joseft"));  // Pasa
+
+    console.log("Prueba validarFormatoEmail:");
+    console.log(validarFormatoEmail("usuario@correo.com")); // Pasa
+    console.log(validarFormatoEmail("correo_invalido"));    // Falla
+
+    console.log("Prueba validarLongitud:");
+    console.log(validarLongitud("1234", 5, 10)); // Falla
+    console.log(validarLongitud("123456", 5, 10)); // Pasa
