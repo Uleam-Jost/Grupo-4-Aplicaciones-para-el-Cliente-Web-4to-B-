@@ -31,3 +31,12 @@ validarFormatoEmail("correo_invalido");  // Falla
 
 validarLongitud("abc", 5, 10);   // Falla
 validarLongitud("abcdef", 5, 10); // Pasa
+
+validarPasswordCompleja("Password123!");  // Pasa
+validarPasswordCompleja("password123!");  // Falla
+
+validarConfirmacionClave("clave123","clave123"); // Pasa
+validarConfirmacionClave("clave123","clave321"); // Falla
+
+validarSoloNumeros("12345"); // Pasa
+validarSoloNumeros("123a5"); // Falla
