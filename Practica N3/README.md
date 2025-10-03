@@ -40,3 +40,12 @@ validarConfirmacionClave("clave123","clave321"); // Falla
 
 validarSoloNumeros("12345"); // Pasa
 validarSoloNumeros("123a5"); // Falla
+
+validarContenidoOfensivo("Muy bueno"); // Pasa
+validarContenidoOfensivo("es una puta  mierda"); // Falla
+
+validarNoMayusculas("Hola que buen juego"); // Pasa
+validarNoMayusculas("HOLA QUE BUEN JUEGO"); // Falla
+
+validarSinEnlacesExternos("Hola que buen juego y me gusta el pan con queso "); // Pasa
+validarSinEnlacesExternos("HOLA QUE BUEN JUEGO https://aulavirtualmoodle.uleam.edu.ec/mod/quiz/attempt.php?attempt=529616&cmid=172113&page=1 "); // Falla  
