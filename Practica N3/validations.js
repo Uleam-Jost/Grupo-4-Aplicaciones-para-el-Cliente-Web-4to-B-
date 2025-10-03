@@ -101,3 +101,46 @@ function validarSoloNumeros(valor) {
         parameters: { value: valor }
     };
 }
+
+// validar que no haya contenido ofensivo en una reseña
+function validarContenidoOfensivo(valor) {
+    const palabrasProhibidas = ["Mierda" ,"puta", "mamon", "nigger"];  // Puedes agregar más palabras
+    for (let palabra of palabrasProhibidas) {
+        if (valor.toLowerCase().includes(palabra.toLocaleLowerCase())) {
+            return {
+                isValid: false,
+                errorMessage: 'La reseña contiene palabras inapropiadas.',
+                errorCode: 'INAPPROPRIATE_CONTENT',
+                parameters: { value: valor, bannedWords: palabrasProhibidas }
+            };
+        }
+    }
+    return { isValid: true };
+}
+
+// validar que no se escriba todo en mayusculas en una reseña
+function validarNoMayusculas(valor) {
+    if (valor === valor.toUpperCase()) {
+        return {
+            isValid: false,
+            errorMessage: 'Por favor, no escribas la reseña en mayúsculas.',
+            errorCode: 'UPPERCASE_TEXT',
+            parameters: { value: valor }
+        };
+    }
+    return { isValid: true };
+}
+
+// validar que no haya enlaces externos en una reseña
+function validarSinEnlacesExternos(valor) {
+    const regex = /https?:\/\/[^\s]+/;
+    if (regex.test(valor)) {
+        return {
+            isValid: false,
+            errorMessage: 'La reseña no debe contener enlaces externos.',
+            errorCode: 'EXTERNAL_LINKS',
+            parameters: { value: valor, regexUsed: regex }
+        };
+    }
+    return { isValid: true };
+}
