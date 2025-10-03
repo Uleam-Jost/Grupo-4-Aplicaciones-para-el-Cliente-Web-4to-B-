@@ -22,4 +22,19 @@
 
     console.log("Prueba validarLongitud:");
     console.log(validarLongitud("1234", 5, 10)); // Falla
+
+    console.log("Prueba validarPasswordCompleja:");
+    console.log(validarPasswordCompleja("Password123!")); //  Pasa
+    console.log(validarPasswordCompleja("password123!")); //  Falla 
+    console.log(validarPasswordCompleja("Passwordabc"));  //  Falla
+    console.log(validarPasswordCompleja("Password123"));  //  Falla 
+    console.log(validarPasswordCompleja("P@ssword"));     //  Falla 
+    
+    console.log("Prueba validarConfirmacionClave:");
+    console.log(validarConfirmacionClave("clave123", "clave123")); // Pasa
+    console.log(validarConfirmacionClave("clave123", "clave321")); // Falla
+
+    console.log("Prueba validarSoloNumeros:");
+    console.log(validarSoloNumeros("095682461")); // Pasa
+    console.log(validarSoloNumeros("0954687df")); // Falla
     console.log(validarLongitud("123456", 5, 10)); // Pasa
